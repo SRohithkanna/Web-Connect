@@ -4,12 +4,15 @@ import {
   UPDATE_PROFILE,
   PROFILE_ERROR,
   CLEAR_PROFILE,
-  ACCOUNT_DELETED
+  ACCOUNT_DELETED,
+  GET_REPOS,
+  NO_REPOS
 } from '../actions/types';
 
 const initialState = {
   profile: null,
   profiles: [],
+  repos: [],
   loading: true,
   error: {}
 };
@@ -26,7 +29,11 @@ function profileReducer(state = initialState, action) {
       return { ...state, error: payload, loading: false, profile: null };
     case CLEAR_PROFILE:
     case ACCOUNT_DELETED:
-      return { ...state, profile: null, loading: false };
+      return { ...state, profile: null, repos: [], loading: false };
+    case GET_REPOS:
+      return { ...state, repos: payload, loading: false };
+    case NO_REPOS:
+      return { ...state, repos: [] };
     default:
       return state;
   }
