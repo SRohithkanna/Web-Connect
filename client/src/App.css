@@ -126,7 +126,6 @@ img {
   margin: 3rem 0;
 }
 
-/* Buttons */
 .btn {
   display: inline-block;
   background: var(--light-color);
@@ -140,27 +139,67 @@ img {
   outline: none;
 }
 
-.btn-primary {
+.badge {
+  font-size: 0.8rem;
+  padding: 0.1rem;
+  text-align: center;
+  margin: 0.3rem;
+  background: var(--light-color);
+  color: #333;
+}
+
+.alert {
+  padding: 0.8rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+}
+
+.btn-primary,
+.bg-primary,
+.badge-primary,
+.alert-primary {
   background: var(--primary-color);
   color: #fff;
 }
 
-.btn-dark {
+.btn-light,
+.bg-light,
+.badge-light,
+.alert-light {
+  background: var(--light-color);
+  color: #333;
+}
+
+.btn-dark,
+.bg-dark,
+.badge-dark,
+.alert-dark {
   background: var(--dark-color);
   color: #fff;
 }
 
-.btn-danger {
+.btn-danger,
+.bg-danger,
+.badge-danger,
+.alert-danger {
   background: var(--danger-color);
   color: #fff;
 }
 
-.btn-success {
+.btn-success,
+.bg-success,
+.badge-success,
+.alert-success {
   background: var(--success-color);
   color: #fff;
 }
 
-.btn-white {
+.btn-white,
+.bg-white,
+.badge-white,
+.alert-white {
   background: #fff;
   color: #333;
   border: #ccc solid 1px;
@@ -170,33 +209,93 @@ img {
   opacity: 0.8;
 }
 
-/* Alerts */
-.alert {
-  padding: 0.8rem;
-  margin: 1rem 0;
-  opacity: 0.9;
+.bg-light,
+.badge-light {
+  border: #ccc solid 1px;
+}
+
+.round-img {
+  border-radius: 50%;
+}
+
+.line {
+  height: 1px;
+  background: #ccc;
+  margin: 1.5rem 0;
+}
+
+/* Overlay */
+.dark-overlay {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Forms */
+.form .form-group {
+  margin: 1.2rem 0;
+}
+
+.form .form-text {
+  display: block;
+  margin-top: 0.3rem;
+  color: #888;
+}
+
+.form input[type='text'],
+.form input[type='email'],
+.form input[type='password'],
+.form input[type='date'],
+.form select,
+.form textarea {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
+.form input[type='submit'],
+button {
+  font: inherit;
+}
+
+.form .social-input {
+  display: flex;
+}
+
+.form .social-input i {
+  padding: 0.5rem;
+  width: 4rem;
+}
+
+.form .social-input i.fa-twitter {
+  color: #38a1f3;
+}
+.form .social-input i.fa-facebook {
+  color: #3b5998;
+}
+.form .social-input i.fa-instagram {
+  color: #3f729b;
+}
+.form .social-input i.fa-youtube {
+  color: #c4302b;
+}
+.form .social-input i.fa-linkedin {
+  color: #0077b5;
+}
+
+.table th,
+.table td {
+  padding: 1rem;
+  text-align: left;
+}
+
+.table th {
   background: var(--light-color);
-  color: #333;
-}
-
-.alert-primary {
-  background: var(--primary-color);
-  color: #fff;
-}
-
-.alert-dark {
-  background: var(--dark-color);
-  color: #fff;
-}
-
-.alert-danger {
-  background: var(--danger-color);
-  color: #fff;
-}
-
-.alert-success {
-  background: var(--success-color);
-  color: #fff;
 }
 
 /* Navbar */
@@ -279,18 +378,30 @@ img {
   align-items: center;
   justify-content: center;
   text-align: center;
-  padding: 2rem;
-  background: var(--primary-color);
-  color: #fff;
 }
 
 .profile-top img {
   width: 250px;
-  border-radius: 50%;
+}
+
+.profile-top .icons a {
+  color: #fff;
+  margin: 0 0.3rem;
+}
+
+.profile-top .icons a:hover {
+  color: var(--dark-color);
 }
 
 .profile-about {
   grid-area: about;
+  text-align: center;
+}
+
+.profile-about .skills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   text-align: center;
 }
 
@@ -302,15 +413,44 @@ img {
   grid-area: edu;
 }
 
+.profile-exp h2,
+.profile-edu h2 {
+  margin-bottom: 1rem;
+}
+
+.profile-exp > div,
+.profile-edu > div {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: #ccc 1px dotted;
+}
+
+.profile-exp > div:last-child,
+.profile-edu > div:last-child {
+  border: 0;
+}
+
+.profile-exp p,
+.profile-edu p {
+  margin: 0.5rem 0;
+}
+
 .profile-github {
   grid-area: github;
 }
 
-.profile-about .skills {
+.profile-github .repo {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+}
+
+.profile-github .repo > div:first-child {
+  flex: 7;
+  flex-basis: 70%;
+}
+
+.profile-github > div:last-child {
+  flex: 3;
+  flex-basis: 20%;
 }
 
 /* Posts Page */
@@ -323,7 +463,7 @@ img {
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-gap: 2rem;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .post > div:first-child {
@@ -332,7 +472,6 @@ img {
 
 .post img {
   width: 100px;
-  border-radius: 50%;
 }
 
 .post .comment-count {
@@ -359,12 +498,39 @@ img {
     display: none;
   }
 
-  .grid-2,
-  .grid-3,
-  .grid-4 {
-    grid-template-columns: 1fr;
+  /* Text Styles */
+  .x-large {
+    font-size: 3rem;
   }
 
+  .large {
+    font-size: 2rem;
+  }
+
+  .lead {
+    font-size: 1rem;
+  }
+
+  /* Navbar */
+  .navbar {
+    display: block;
+    text-align: center;
+  }
+
+  .navbar ul {
+    text-align: center;
+    justify-content: center;
+  }
+
+  .navbar h1 {
+    margin-bottom: 1rem;
+  }
+
+  .navbar .welcome {
+    display: none;
+  }
+
+  /* Profiles Page */
   .profile {
     grid-template-columns: 1fr;
     text-align: center;
@@ -372,6 +538,14 @@ img {
 
   .profile ul {
     display: none;
+  }
+
+  /* Profile Page */
+
+  .profile-top img,
+  .profile img {
+    width: 200px;
+    margin: auto;
   }
 
   .profile-grid {
@@ -383,12 +557,112 @@ img {
       'github';
   }
 
+  .profile-about .skills {
+    flex-direction: column;
+  }
+
+  .dash-buttons a {
+    display: block;
+    width: 100%;
+    margin-bottom: 0.2rem;
+  }
+
   .post {
     grid-template-columns: 1fr;
   }
-
   .post a,
   .post button {
     padding: 0.3rem 0.4rem;
+  }
+}
+
+.alert-wrapper {
+  position: fixed;
+  top: 4rem;
+  right: 2rem;
+  display: inline-block;
+}
+
+/* Profile Grid */
+.profile-grid {
+  display: grid;
+  grid-template-areas:
+    'top top'
+    'about about'
+    'exp edu'
+    'github github';
+  grid-gap: 1rem;
+}
+
+.profile-top {
+  grid-area: top;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+}
+
+.profile-top img {
+  border-radius: 50%;
+}
+
+.profile-top .icons a {
+  color: #fff;
+  margin: 0 0.3rem;
+}
+
+.profile-top .icons a:hover {
+  color: var(--dark-color);
+}
+
+.profile-about {
+  grid-area: about;
+  text-align: center;
+}
+
+.profile-about .skills {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  text-align: center;
+}
+
+.profile-exp {
+  grid-area: exp;
+}
+
+.profile-edu {
+  grid-area: edu;
+}
+
+.profile-exp h2,
+.profile-edu h2 {
+  margin-bottom: 1rem;
+}
+
+.profile-exp > div,
+.profile-edu > div {
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: #ccc 1px dotted;
+}
+
+.profile-exp > div:last-child,
+.profile-edu > div:last-child {
+  border: 0;
+}
+
+/* Mobile profile grid */
+@media (max-width: 700px) {
+  .profile-grid {
+    grid-template-areas:
+      'top'
+      'about'
+      'exp'
+      'edu'
+      'github';
   }
 }
