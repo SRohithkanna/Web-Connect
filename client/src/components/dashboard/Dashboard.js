@@ -6,6 +6,8 @@ import Spinner from '../layout/Spinner';
 import DashboardActions from './DashboardActions';
 import Experience from './Experience';
 import Education from './Education';
+import PhotoUpload from './PhotoUpload';       // ADD
+import ResumeUpload from './ResumeUpload';     // ADD
 
 const Dashboard = ({
   getCurrentProfile,
@@ -25,11 +27,19 @@ const Dashboard = ({
       <p className="lead">
         <i className="fas fa-user" /> Welcome {user && user.name}
       </p>
+
+      {/* Photo Upload - always show */}
+      <PhotoUpload />
+
       {profile !== null ? (
         <>
           <DashboardActions />
           <Experience experience={profile.experience} />
           <Education education={profile.education} />
+
+          {/* Resume Upload */}
+          <ResumeUpload />
+
           <div className="my-2">
             <button
               className="btn btn-danger"

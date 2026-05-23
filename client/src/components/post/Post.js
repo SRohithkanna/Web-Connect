@@ -37,6 +37,19 @@ const Post = ({ getPost, post: { post, loading }, auth, deletePost, addLike, rem
         </div>
         <div>
           <p className="my-1">{post.text}</p>
+          {post.image && (
+  <img
+    src={post.image}
+    alt="Post"
+    style={{
+      maxWidth: '100%',
+      maxHeight: '400px',
+      borderRadius: '4px',
+      marginBottom: '0.5rem',
+      objectFit: 'cover'
+    }}
+  />
+)}
           <p className="post-date">
             Posted on {new Date(post.date).toLocaleDateString()}
           </p>

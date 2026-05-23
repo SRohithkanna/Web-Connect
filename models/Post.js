@@ -33,6 +33,9 @@ const PostSchema = new mongoose.Schema({
         type: String,
         required: true
       },
+      image: {
+  type: String  // ADD THIS
+},
       name: {
         type: String
       },

@@ -7,6 +7,7 @@ const ProfileTop = ({
     location,
     website,
     social,
+    resume,
     user: { name, avatar }
   }
 }) => {
@@ -49,6 +50,17 @@ const ProfileTop = ({
             <i className="fab fa-instagram fa-2x" />
           </a>
         )}
+        {/* Add after social icons */}
+{resume && (
+  <a
+    href={resume}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="btn btn-light my-1"
+  >
+    📄 Download Resume
+  </a>
+)}
       </div>
     </div>
   );

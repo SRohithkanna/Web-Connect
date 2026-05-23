@@ -285,7 +285,7 @@ router.get('/github/:username', async (req, res) => {
       }
     });
 
-    console.log('Status:', response.status);
+    
 
     const data = await response.json();
 

@@ -28,6 +28,9 @@ const ProfileSchema = new mongoose.Schema({
   githubusername: {
     type: String
   },
+  resume: {
+  type: String  
+},
   experience: [
     {
       title: { type: String, required: true },

@@ -8,7 +8,7 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, name, avatar, user, likes, comments, date }
+  post: { _id, text, image, name, avatar, user, likes, comments, date }  // ADD image here
 }) => (
   <div className="post bg-white p-1 my-1">
     <div>
@@ -19,6 +19,22 @@ const PostItem = ({
     </div>
     <div>
       <p className="my-1">{text}</p>
+
+      {/* ADD THIS BLOCK */}
+      {image && (
+        <img
+          src={image}
+          alt="Post"
+          style={{
+            maxWidth: '100%',
+            maxHeight: '400px',
+            borderRadius: '4px',
+            marginBottom: '0.5rem',
+            objectFit: 'cover'
+          }}
+        />
+      )}
+
       <p className="post-date">
         Posted on {new Date(date).toLocaleDateString()}
       </p>
