@@ -38,6 +38,9 @@ This project was built from scratch following the MERN stack architecture, with 
 - 👥 **Developer Directory** — Browse all registered developers and view their profiles
 - 📱 **Responsive Design** — Works on desktop and mobile
 - ☁️ **Cloud Deployed** — Live on Render with MongoDB Atlas
+- 📸 **Profile Photo Upload** — Upload your own photo from your computer
+- 🖼️ **Post Image Attachments** — Add images to community posts
+- 📄 **Resume Upload** — Upload and share your PDF resume on your profile
 
 ---
 
@@ -54,6 +57,7 @@ This project was built from scratch following the MERN stack architecture, with 
 | bcryptjs | Password hashing |
 | express-validator | Input validation |
 | Gravatar | Profile avatars |
+| Cloudinary | Cloud file storage for photos, images & resumes |
 
 ### Frontend
 | Technology | Purpose |
