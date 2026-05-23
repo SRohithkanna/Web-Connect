@@ -274,26 +274,27 @@ router.delete('/education/:edu_id', auth, async (req, res) => {
 // @access  Public
 router.get('/github/:username', async (req, res) => {
   try {
-    const uri = `https://api.github.com/users/${req.params.username}/repos?per_page=5&sort=created:asc`;
+    const uri = `https://api.github.com/users/${req.params.username}/repos`;
+
+    console.log('Fetching:', uri);
 
     const response = await fetch(uri, {
-      method: 'GET',
       headers: {
-        'user-agent': 'node.js',
-        Authorization: `token ${process.env.GITHUB_TOKEN}`
+        Authorization: `Bearer ${process.env.GITHUB_TOKEN}`,
+        'User-Agent': 'node.js'
       }
     });
 
-    if (!response.ok) {
-      return res.status(404).json({ msg: 'No Github profile found' });
-    }
+    console.log('Status:', response.status);
 
     const data = await response.json();
+
+    console.log(data);
+
     res.json(data);
   } catch (err) {
     console.error(err.message);
     res.status(500).send('Server Error');
   }
 });
-
 module.exports = router;
