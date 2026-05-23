@@ -13,24 +13,25 @@ const EditProfile = ({ createProfile, getCurrentProfile, profile: { profile } })
   const [displaySocialInputs, toggleSocialInputs] = useState(false);
 
   useEffect(() => {
-    getCurrentProfile();
-    if (profile) {
-      setFormData({
-        company: profile.company || '',
-        website: profile.website || '',
-        location: profile.location || '',
-        status: profile.status || '',
-        skills: profile.skills ? profile.skills.join(', ') : '',
-        githubusername: profile.githubusername || '',
-        bio: profile.bio || '',
-        twitter: profile.social?.twitter || '',
-        facebook: profile.social?.facebook || '',
-        linkedin: profile.social?.linkedin || '',
-        youtube: profile.social?.youtube || '',
-        instagram: profile.social?.instagram || ''
-      });
-    }
-  }, [getCurrentProfile]);
+  getCurrentProfile();
+  if (profile) {
+    setFormData({
+      company: profile.company || '',
+      website: profile.website || '',
+      location: profile.location || '',
+      status: profile.status || '',
+      skills: profile.skills ? profile.skills.join(', ') : '',
+      githubusername: profile.githubusername || '',
+      bio: profile.bio || '',
+      twitter: profile.social?.twitter || '',
+      facebook: profile.social?.facebook || '',
+      linkedin: profile.social?.linkedin || '',
+      youtube: profile.social?.youtube || '',
+      instagram: profile.social?.instagram || ''
+    });
+  }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+}, [getCurrentProfile]);
 
   const { company, website, location, status, skills, githubusername,
     bio, twitter, facebook, linkedin, youtube, instagram } = formData;

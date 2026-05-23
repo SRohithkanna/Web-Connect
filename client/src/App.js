@@ -17,11 +17,11 @@ import AddExperience from './components/profile-forms/AddExperience';
 import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 // import Profile from './components/profiles/Profile';
-import ProfileItem from './components/profiles/ProfileItem';
+
 import Posts from './components/posts/Posts';
 // import Post from './components/posts/Post';
-import PostForm from './components/posts/PostForm';
-import PostItem from './components/posts/PostItem';
+
+
 import Profile from './components/profile/Profile';
 import Post from './components/post/Post';
 
