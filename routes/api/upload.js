@@ -45,7 +45,7 @@ router.post(
       if (!req.file) {
         return res.status(400).json({ msg: 'No file uploaded' });
       }
-
+      console.log('Uploaded file:', req.file);
       const imageUrl = req.file.path;
       res.json({ imageUrl, msg: 'Image uploaded successfully' });
     } catch (err) {

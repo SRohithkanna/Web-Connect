@@ -55,11 +55,20 @@ export const deletePost = (id) => async (dispatch) => {
 export const addPost = (formData) => async (dispatch) => {
   try {
     const config = { headers: { 'Content-Type': 'application/json' } };
-    const res = await axios.post('/api/posts', formData, config);
+    const body = JSON.stringify({
+      text: formData.text,
+      image: formData.image || null
+    });
+   
+    const res = await axios.post('/api/posts', body, config);
+    
     dispatch({ type: ADD_POST, payload: res.data });
     dispatch(setAlert('Post Created', 'success'));
   } catch (err) {
-    dispatch({ type: POST_ERROR, payload: { msg: err.response.statusText, status: err.response.status } });
+    dispatch({
+      type: POST_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status }
+    });
   }
 };
 

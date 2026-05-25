@@ -1,50 +1,30 @@
 import React, { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { getPost } from '../../actions/post';
-import PostItem from './PostItem';
-import CommentForm from './CommentForm';
-import CommentItem from './CommentItem';
+import { getPosts } from '../../actions/post';
 import Spinner from '../layout/Spinner';
+import PostItem from './PostItem';
+import PostForm from './PostForm';
 
-const Post = ({ getPost, post: { post }, match }) => {
-  const { id } = useParams();
+const Posts = ({ getPosts, post: { posts, loading } }) => {
   useEffect(() => {
-    getPost(id);
-  }, [getPost, id]);
+    getPosts();
+  }, [getPosts]);
 
-  return (
-    <div className="post-page">
-      <Link to="/posts" className="btn btn-light my-1">
-        Back To Posts
-      </Link>
-      {post === null ? (
-        <Spinner />
-      ) : (
-        <>
-          <PostItem post={post} />
-          <div className="post-comments my-2">
-            <CommentForm postId={post._id} />
-            <div className="comments">
-              {post.comments && post.comments.map((comment) => (
-                <CommentItem key={comment._id} comment={comment} postId={post._id} />
-              ))}
-            </div>
-          </div>
-        </>
-      )}
-    </div>
+  return loading ? (
+    <Spinner />
+  ) : (
+    <section className="container">
+      <h1 className="large text-primary">Posts</h1>
+      <p className="lead">Welcome to the community!</p>
+      <PostForm />
+      <div className="posts">
+        {posts.map((post) => (
+          <PostItem key={post._id} post={post} />
+        ))}
+      </div>
+    </section>
   );
 };
 
-Post.propTypes = {
-  getPost: PropTypes.func.isRequired,
-  post: PropTypes.object.isRequired
-};
-
-const mapStateToProps = (state) => ({
-  post: state.post
-});
-
-export default connect(mapStateToProps, { getPost })(Post);
+const mapStateToProps = (state) => ({ post: state.post });
+export default connect(mapStateToProps, { getPosts })(Posts);

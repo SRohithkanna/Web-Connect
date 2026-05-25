@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/post';
-import { uploadPostImage } from '../../actions/upload';
+import { getPosts } from '../../actions/post';   // ADD THIS
+import axios from 'axios';
 
-const PostForm = ({ addPost }) => {
+const PostForm = ({ addPost, getPosts }) => {   // ADD getPosts here
   const [text, setText] = useState('');
   const [image, setImage] = useState(null);
   const [preview, setPreview] = useState(null);
@@ -25,15 +26,24 @@ const PostForm = ({ addPost }) => {
   const onSubmit = async (e) => {
     e.preventDefault();
     setUploading(true);
+
     let imageUrl = null;
 
     if (image) {
-      const formData = new FormData();
-      formData.append('image', image);
-      imageUrl = await uploadPostImage(formData);
+      try {
+        const formData = new FormData();
+        formData.append('image', image);
+        const config = { headers: { 'Content-Type': 'multipart/form-data' } };
+        const res = await axios.post('/api/upload/post-image', formData, config);
+        imageUrl = res.data.imageUrl;
+      } catch (err) {
+        console.error('Upload failed:', err);
+      }
     }
 
-    addPost({ text, image: imageUrl });
+    await addPost({ text, image: imageUrl });
+    await getPosts();   // ADD THIS — refetch all posts so image shows immediately
+
     setText('');
     setImage(null);
     setPreview(null);
@@ -55,12 +65,18 @@ const PostForm = ({ addPost }) => {
           onChange={(e) => setText(e.target.value)}
           required
         />
+
         {preview && (
           <div style={{ position: 'relative', display: 'inline-block', marginBottom: '1rem' }}>
             <img
               src={preview}
               alt="Preview"
-              style={{ maxWidth: '100%', maxHeight: '300px', borderRadius: '4px' }}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '300px',
+                borderRadius: '4px',
+                display: 'block'
+              }}
             />
             <button
               type="button"
@@ -76,7 +92,8 @@ const PostForm = ({ addPost }) => {
             </button>
           </div>
         )}
-        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
+
+        <div style={{ display: 'flex', gap: '1rem', alignItems: 'center', flexWrap: 'wrap' }}>
           <input
             type="submit"
             className="btn btn-dark my-1"
@@ -86,9 +103,9 @@ const PostForm = ({ addPost }) => {
           <label
             htmlFor="post-image"
             className="btn btn-light my-1"
-            style={{ cursor: 'pointer' }}
+            style={{ cursor: 'pointer', marginBottom: '0' }}
           >
-            📷 Add Image
+            📷 {image ? image.name.substring(0, 15) + '...' : 'Add Image'}
           </label>
           <input
             id="post-image"
@@ -97,10 +114,19 @@ const PostForm = ({ addPost }) => {
             onChange={onImageChange}
             style={{ display: 'none' }}
           />
+          {image && (
+            <button
+              type="button"
+              className="btn btn-danger my-1"
+              onClick={removeImage}
+            >
+              Remove
+            </button>
+          )}
         </div>
       </form>
     </div>
   );
 };
 
-export default connect(null, { addPost })(PostForm);
+export default connect(null, { addPost, getPosts })(PostForm);   // ADD getPosts

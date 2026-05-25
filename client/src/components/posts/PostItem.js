@@ -8,7 +8,7 @@ const PostItem = ({
   removeLike,
   deletePost,
   auth,
-  post: { _id, text, image, name, avatar, user, likes, comments, date }  // ADD image here
+  post: { _id, text, image, name, avatar, user, likes, comments, date }  
 }) => (
   <div className="post bg-white p-1 my-1">
     <div>
@@ -20,7 +20,7 @@ const PostItem = ({
     <div>
       <p className="my-1">{text}</p>
 
-      {/* ADD THIS BLOCK */}
+      
       {image && (
         <img
           src={image}

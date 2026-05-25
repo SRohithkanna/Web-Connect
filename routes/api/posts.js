@@ -23,6 +23,7 @@ router.post(
 
       const newPost = new Post({
         text: req.body.text,
+        image: req.body.image || null,
         name: user.name,
         avatar: user.avatar,
         user: req.user.id
